@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	h1.
+		User List fecthed from db
+	ul
+		each user, i in users
+			li
+				a(href="mailto:#{user.email}")=user.username
+	p 
+	| to add new user click 	
+	a(href="/newuser") here
