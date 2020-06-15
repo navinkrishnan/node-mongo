@@ -1,0 +1,21 @@
+name: Pipeline
+
+on: [push]
+env:
+  APPLICATION_NAME: node-mongo
+jobs:
+  lint:
+    runs-on: spittet/node-mongodb
+    steps:
+    - name: setup mongoose
+      uses: npm install mongoose
+    - name: start
+      run: service mongod start
+    - name: start npm
+      run: npm i
+        
+  build_image:
+    needs: [lint]
+    runs-on: spittet/node-mongodb
+    steps:
+    - run: npm start
